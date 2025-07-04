@@ -70,8 +70,12 @@ CookBot 앱은 사용자가 원하는 입력에 따라 AI를 이용하여 레시
 5. 다음 작은 기능에 대한 테스트 작성
 6. 반복
 
-**Kotlin-specific (Rust 특이사항)**
+**Kotlin-specific (Kotlin 특이사항)**
 - 코드 스타일은 항상 Kotlin 코딩 컨벤션을 따릅니다. (https://kotlinlang.org/docs/coding-conventions.html)
+- Java -> Kotlin 변환 시, 아래의 링크를 참조하여 항상 Best Practices를 따릅니다.
+    - https://www.krasamo.com/migrating-apps-from-java-to-kotlin/
+    - https://www.intelivita.com/blog/convert-java-to-kotlin/
+    - chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://resources.jetbrains.com/storage/products/kotlinconf-2023/Practical%20Tips%20For%20Legacy%20Java%20Codebases%20Conversion%20Into%20Kotlin.pdf
 
 ## 프로젝트 상태
 
