@@ -333,4 +333,7 @@ feat: 상품 리뷰 평점 시스템 도입
 - 리뷰 목록에 별점 표시 기능 추가
 - 상품 상세페이지에 평균 별점 표시
 - 별점별 리뷰 필터링 기능 구현
-```
+
+## 코드 품질 개선 및 리팩토링에 관한 지침
+
+- 해당 링크를 참고하세요. (https://techblog.lycorp.co.jp/ko/techniques-for-improving-code-quality-list)
