@@ -1,6 +1,8 @@
-rootProject.name = "CookBotServer"
+rootProject.name = "cookbot-server"
 
 include(
     "common",
     "common:snowflake",
+    "service",
+    "service:chat",
 )

@@ -1,11 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git config:*)",
-      "Bash(gh issue create:*)"
+      "Bash(git commit:*)"
     ],
     "deny": []
   }

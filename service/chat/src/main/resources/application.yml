@@ -1,0 +1,12 @@
+server:
+  port: 9000
+
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:test}
+      chat:
+        options:
+          model: gpt-4o
+          temperature: 0.7
+          max-tokens: 1000
