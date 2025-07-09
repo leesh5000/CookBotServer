@@ -62,11 +62,11 @@ CookBot은 사용자의 자연어 요청에 따라 AI를 이용하여 레시피�
 | Refrigerator           | 사용자의 냉장고 (구매한 재료들을 저장)        |
 | RefrigeratorItem       | 냉장고에 저장된 개별 재료 아이템            |
 | StorageConfirmation    | 구매 후 냉장고 저장 확인 요청             |
-| RecipeContent          | 레시피 콘텐츠 (영상, 웹 기사 등)           |
-| ConversationFilter     | 대화 검열 및 필터링 규칙               |
-| ModerationResult       | 메시지 검열 결과                      |
-| ViolationRecord        | 사용자 위반 기록                       |
-| ContentType            | 콘텐츠 유형 (영상, 웹 기사 등)            |
+| RecipeContent          | 레시피 콘텐츠 (영상, 웹 기사 등)          |
+| ConversationFilter     | 대화 검열 및 필터링 규칙                |
+| ModerationResult       | 메시지 검열 결과                     |
+| ViolationRecord        | 사용자 위반 기록                     |
+| ContentType            | 콘텐츠 유형 (영상, 웹 기사 등)           |
 
 ## 3. 도메인 모델 설계
 
@@ -125,10 +125,10 @@ data class Recipe(
     fun getContentByType(type: ContentType): List<RecipeContent> {
         return contents.filter { it.type == type }
     }
-    
+
     fun hasVideoContent(): Boolean = contents.any { it.type == ContentType.VIDEO }
     fun hasWebContent(): Boolean = contents.any { it.type == ContentType.WEB_ARTICLE }
-    
+
     fun getPrimaryContent(): RecipeContent? {
         return contents.find { it.isPrimary } ?: contents.firstOrNull()
     }
@@ -238,7 +238,7 @@ data class ChatSession(
             }
         }
     }
-    
+
     fun isSuspended(): Boolean = status == SessionStatus.SUSPENDED
     fun canAcceptMessages(): Boolean = status == SessionStatus.ACTIVE && violationCount < 3
 }
@@ -293,17 +293,17 @@ data class ConversationFilter(
 ) {
     fun isTopicAllowed(message: String): Boolean {
         val lowercaseMessage = message.lowercase()
-        
+
         // 블로킹된 키워드 체크
         if (blockedKeywords.any { lowercaseMessage.contains(it) }) {
             return false
         }
-        
+
         // 허용된 주제 체크 (엄격 모드에서만)
         if (strictMode) {
             return allowedTopics.any { lowercaseMessage.contains(it) }
         }
-        
+
         return true
     }
 }
@@ -314,7 +314,7 @@ sealed class ModerationResult {
         val reason: ModerationReason,
         val suggestedAlternative: String? = null
     ) : ModerationResult()
-    
+
     fun isApproved(): Boolean = this is Approved
     fun isRejected(): Boolean = this is Rejected
 }
@@ -695,14 +695,14 @@ interface RecipeContentService {
         recipeId: RecipeId,
         content: RecipeContent
     ): Recipe
-    
+
     suspend fun validateContent(content: RecipeContent): ContentQuality
-    
+
     suspend fun filterContentByPreference(
         userId: UserId,
         contents: List<RecipeContent>
     ): List<RecipeContent>
-    
+
     suspend fun checkContentAccessibility(
         content: RecipeContent
     ): ContentAccessibilityStatus
@@ -726,18 +726,18 @@ interface ConversationModerationService {
         userId: UserId,
         sessionId: ChatSessionId
     ): ModerationResult
-    
+
     suspend fun analyzeConversationIntent(
         message: String,
         conversationContext: ConversationContext
     ): ConversationIntent
-    
+
     suspend fun recordViolation(
         userId: UserId,
         sessionId: ChatSessionId,
         reason: ModerationReason
     ): ViolationRecord
-    
+
     suspend fun updateSessionStatus(
         sessionId: ChatSessionId,
         violationCount: Int
